@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+ <link rel="stylesheet" href="style.css"/>
 <html>
   <head>
 
@@ -8,15 +9,29 @@
 
   </head>
 
-  <body>
-    <img src="https://www.shutterstock.com/image-vector/cute-blue-bird-cartoon-475041247" />
 
-    <h1> Twiddler for Beginners </h1>
+
+  <body>
+    <div class="container">
+    <h1 class="title"> Twiddler </h1>
+    <div class="tweets">
+     <section class ='main'>
+      </section>
+      <section class ='newsfeed'>
+      </section>
+    </div>
+ 
+     </div>
+  
+
+ 
+
     <script>
-     <link rel="stylesheet" href="style.css">
-      $(document).ready(function(){ //add buttons for user names to see info
-        var $body = $('body');
-        $body.html('');
+      $(document).ready(function(){ //original jquery script
+        var $body = $('.tweets');
+      
+
+        //$body.html('');
 
         var index = streams.home.length - 1;
         while(index >= 0){
@@ -25,10 +40,78 @@
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
           $tweet.appendTo($body);
           index -= 1;
-        }
+        } 
+//button for new tweets to load
 
-      });
+       var $button = $("<input class='btn new' type=button value='See New'>");
+        $button.appendTo($body);
+        $button.on('click', function () {
+          generateRandomTweet();
+          
+          var newTweet = streams.home.pop();
+          
+          var $newTweet = $('<div class=tweet></div>');
+          var $newUser = $('<p class=user></p>');
+          var $newMessage = $('<p class=message></p>');
+          var $newDateTime = $('<span class=dateTime></span>');
+          
+          $newTweet.appendTo('.newfeed');
+          $newUser.addClass(newTweet.user).attr('data-user', newTweet.user).text('@' + newTweet.user + ' ').appendTo($newTweet);
+          $newMessage.text(newTweet.message).appendTo($newTweet);
+          $newDateTime.attr('data-livestamp', new Date().toUTCString()).appendTo($newTweet);
+          
+          $(this).before($newTweet);
+        });
+        // home button 
+        var $homeButton = $("<input class='btn home' type=button value='Home'>");
+        $homeButton.on('click', function(event){
+           event.preventDefault();
+           $('.timeline').remove();
+           $('div').show(400);
+           $('.new').show(400);
+           $homeButton.hide(400);
+        });
+        $homeButton.insertAfter($button).hide();
+        
+        
+        // mouse pointer styling
+        
+        $('.tweets').on('mouseover', '.tweet .user', function(){
+          $(this).addClass('highlight');
+        });
+        
+        $('.tweets').on('mouseleave', '.tweet .user', function(){
+          $(this).removeClass('highlight');
+        });
+        
+        
+        // user timeline
+        
+        $('.tweets').on('click', '.tweet .user', function(event){
+          event.preventDefault();
+          
+          var user = $(this).data('user');
+          
+          $('.timeline').remove();
+          var $timeline = $('<h1 class=timeline>'+ user +'\'s Timeline</h1>');
+          $timeline.prependTo($body);
+          $('.new').hide();
+          $homeButton.show(400);
+          
+          $('.tweet').not("div:contains('" + user + "')").hide(400);
+          $("div:contains('" + user + "')").show(400);
+          
+        });
+        
+          
+    
+      })
+
 
     </script>
+
+</div>
+    
   </body>
+
 </html>
