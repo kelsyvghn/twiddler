@@ -1,19 +1,20 @@
 <!DOCTYPE html>
  <link rel="stylesheet" href="style.css"/>
-<html>
+<html lang="en">
   <head>
-
-    <title> Twiddler </title>
+    <meta charset="utf-8">
+    <title> Not Twitter </title>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
-
+  <script src="timestamp.js"></script>
   </head>
 
-
-
   <body>
+     <h1 class="title"> Twiddler </h1>
+     <h3> The Confused Twitter </h3>
+
     <div class="container">
-    <h1 class="title"> Twiddler </h1>
+   
     <div class="tweets">
      <section class ='main'>
       </section>
@@ -24,26 +25,33 @@
      </div>
   
 
- 
+
 
     <script>
-      $(document).ready(function(){ //original jquery script
+      $(document).ready(function(){
         var $body = $('.tweets');
-      
-
-        //$body.html('');
+        // $body.html('');
 
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        } 
-//button for new tweets to load
 
-       var $button = $("<input class='btn new' type=button value='See New'>");
+          var $tweet = $('<div class=tweet></div>');
+          var $user = $('<p class=user></p>');
+          var $message = $('<p class=message></p>');
+          var $dateTime = $('<span class=dateTime></span>');
+          
+          $tweet.appendTo('.main');
+          $user.addClass(tweet.user).attr('data-user', tweet.user).text('@' + tweet.user + ' ').appendTo($tweet);
+          $message.text(tweet.message).appendTo($tweet);
+          $dateTime.attr('data-livestamp', tweet.created_at.toUTCString()).appendTo($tweet);
+          
+          index -= 1;
+        }
+        
+        // button for getting new tweets
+        
+        var $button = $("<input class='btn new' type=button value='Check New Tweet'>");
         $button.appendTo($body);
         $button.on('click', function () {
           generateRandomTweet();
@@ -60,9 +68,11 @@
           $newMessage.text(newTweet.message).appendTo($newTweet);
           $newDateTime.attr('data-livestamp', new Date().toUTCString()).appendTo($newTweet);
           
-          $(this).before($newTweet);
+           $(this).before($newTweet);
         });
-        // home button 
+        
+        // Home button for going back to main feed
+        
         var $homeButton = $("<input class='btn home' type=button value='Home'>");
         $homeButton.on('click', function(event){
            event.preventDefault();
@@ -103,12 +113,36 @@
           
         });
         
+        
+        // allow users to tweet
+        
+        var $textarea = $("<textarea placeholder='Enter something funny :)' id='text' name='text' rows='4' style='overflow: hidden; word-wrap: break-word; resize: none; height: 160px;'></textarea>");
+        $textarea.appendTo('#submit');
+        
+        var $submitButton = $("<input class='btn submit' type='button' value='Tweet Now!'>")
+        $submitButton.insertAfter($textarea);
+        
+        
+        $submitButton.on('click', function(){
           
-    
-      })
+          var $newTweet = $('<div class=tweet></div>');
+          var $newUser = $('<p class=user></p>');
+          var $newMessage = $('<p class=message></p>');
+          var $newDateTime = $('<span class=dateTime></span>');
+          
+          $newTweet.appendTo('.newfeed');
+          $newUser.addClass($('input#username').val()).attr('data-user', $('input#username').val()).text('@' + $('input#username').val() + ' ').appendTo($newTweet);
+          $newMessage.text($('textarea').val()).appendTo($newTweet);
+          $newDateTime.attr('data-livestamp', new Date().toUTCString()).appendTo($newTweet);
+          
+        });
+        
+          
+      });
 
 
     </script>
+
 
 </div>
     
