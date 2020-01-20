@@ -51,7 +51,9 @@
           index -= 1;
         }
         
-       
+       $('button#go').on('click', function(){
+  $('p#output').text( $('input#color').val() ).css('color', 'red');
+});
         // button for getting new tweets
         
         var $button = $("<input class='btn new' type=button value='Check New Tweet'>");
@@ -113,7 +115,7 @@
         });
         
           
-
+      $(body).css(background-color, 'green')
 
 
     </script>
