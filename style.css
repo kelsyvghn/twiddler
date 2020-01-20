@@ -3,7 +3,51 @@ body {
 	font-family: Helvetica;
 	font-size: 18px;
 	text-align: center;
-	background-color: purple;
+	background-color: #42f5da;
+
+}
+
+.timeStamp {
+	font-size: 8px;
+}
+.container {
+	width: 100%;
+	line-height: 20px;
+	margin: auto;
+	background-color: grey;
+}
+
+
+.title {
+	color: orange;
+	font-family: helvetica; 
+   font-size: 75px; 
+   line-height: 100px; 
+   font-weight: normal; 
+   text-align: left;
+   background-color: black;
+}
+.user {
+	display: inline;
+	color: #f5bc42;
+	font-family: arial;
+}
+
+
+
+.btn {
+margin-top: 20px;
+padding: 10px 20px 11px;
+font-size: 15px;
+background-color: grey;
+font-weight: bold;
+color: black;
+border-radius: 100px;
+-moz-border-radius: 100px;
+-webkit-border-radius: 100px;
+border: 1px solid white;
+cursor: pointer;
+
 }
 
 
