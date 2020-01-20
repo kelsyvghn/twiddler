@@ -116,8 +116,8 @@
         
         // allow users to tweet
         
-        var $textarea = $("<textarea placeholder='Enter something funny :)' id='text' name='text' rows='4' style='overflow: hidden; word-wrap: break-word; resize: none; height: 160px;'></textarea>");
-        $textarea.appendTo('#submit');
+        //var $textarea = $("<textarea placeholder='Enter something funny :)' id='text' name='text' rows='4' style='overflow: hidden; word-wrap: break-word; resize: none; height: 160px;'></textarea>");
+        //$textarea.appendTo('#submit');
         
         var $submitButton = $("<input class='btn submit' type='button' value='Tweet Now!'>")
         $submitButton.insertAfter($textarea);
@@ -126,14 +126,14 @@
         $submitButton.on('click', function(){
           
           var $newTweet = $('<div class=tweet></div>');
-          var $newUser = $('<p class=user></p>');
-          var $newMessage = $('<p class=message></p>');
-          var $newDateTime = $('<span class=dateTime></span>');
+         // var $newUser = $('<p class=user></p>');
+          //var $newMessage = $('<p class=message></p>');
+//          var $newDateTime = $('<span class=dateTime></span>');
           
-          $newTweet.appendTo('.newfeed');
-          $newUser.addClass($('input#username').val()).attr('data-user', $('input#username').val()).text('@' + $('input#username').val() + ' ').appendTo($newTweet);
-          $newMessage.text($('textarea').val()).appendTo($newTweet);
-          $newDateTime.attr('data-timestamp', new Date().toUTCString()).appendTo($newTweet);
+          //$newTweet.appendTo('.newfeed');
+          //$newUser.addClass($('input#username').val()).attr('data-user', $('input#username').val()).text('@' + $('input#username').val() + ' ').appendTo($newTweet);
+          //$newMessage.text($('textarea').val()).appendTo($newTweet);
+//          $newDateTime.attr('data-timestamp', new Date().toUTCString()).appendTo($newTweet);
           
         });
         
