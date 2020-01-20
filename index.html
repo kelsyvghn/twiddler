@@ -11,15 +11,14 @@
 
   <body>
      <h1 class="title"> Twiddler </h1>
-     <h3> The Confused Twitter </h3>
 
     <div class="container">
    
     <div class="tweets">
      <section class ='main'>
+      <time class="entry-date published" >Last Updated Today</time>
       </section>
-      <section class ='newsfeed'>
-      </section>
+    
     </div>
  
      </div>
@@ -28,11 +27,17 @@
 
 
     <script>
+      $
+      //tweet generator, HR provided:
       $(document).ready(function(){
         var $body = $('.tweets');
-        // $body.html('');
+          $()
+        //$body.html('');
 
         var index = streams.home.length - 1;
+
+
+
         while(index >= 0){
           var tweet = streams.home[index];
 
@@ -41,14 +46,15 @@
           var $message = $('<p class=message></p>');
           var $dateTime = $('<span class=dateTime></span>');
           
+         
           $tweet.appendTo('.main');
           $user.addClass(tweet.user).attr('data-user', tweet.user).text('@' + tweet.user + ' ').appendTo($tweet);
           $message.text(tweet.message).appendTo($tweet);
-          $dateTime.attr('data-timestamp', tweet.created_at.toUTCString()).appendTo($tweet);
-          
+//        
           index -= 1;
         }
         
+       
         // button for getting new tweets
         
         var $button = $("<input class='btn new' type=button value='Check New Tweet'>");
@@ -61,16 +67,18 @@
           var $newTweet = $('<div class=tweet></div>');
           var $newUser = $('<p class=user></p>');
           var $newMessage = $('<p class=message></p>');
-          var $newDateTime = $('<span class=dateTime></span>');
           
+
           $newTweet.appendTo('.newfeed');
           $newUser.addClass(newTweet.user).attr('data-user', newTweet.user).text('@' + newTweet.user + ' ').appendTo($newTweet);
           $newMessage.text(newTweet.message).appendTo($newTweet);
-          $newDateTime.attr('data-timestamp', new Date().toUTCString()).appendTo($newTweet);
+          
           
            $(this).before($newTweet);
+
         });
-        
+
+    
         // Home button for going back to main feed
         
         var $homeButton = $("<input class='btn home' type=button value='Home'>");
@@ -82,20 +90,10 @@
            $homeButton.hide(400);
         });
         $homeButton.insertAfter($button).hide();
+
         
-        
-        // mouse pointer styling
-        
-        $('.tweets').on('mouseover', '.tweet .user', function(){
-          $(this).addClass('highlight');
-        });
-        
-        $('.tweets').on('mouseleave', '.tweet .user', function(){
-          $(this).removeClass('highlight');
-        });
-        
-        
-        // user timeline
+
+        // user's timeline
         
         $('.tweets').on('click', '.tweet .user', function(event){
           event.preventDefault();
@@ -112,33 +110,13 @@
           $("div:contains('" + user + "')").show(400);
           
         });
-        
-        
-        // allow users to tweet
-        
-        //var $textarea = $("<textarea placeholder='Enter something funny :)' id='text' name='text' rows='4' style='overflow: hidden; word-wrap: break-word; resize: none; height: 160px;'></textarea>");
-        //$textarea.appendTo('#submit');
-        
-        var $submitButton = $("<input class='btn submit' type='button' value='Tweet Now!'>")
-        $submitButton.insertAfter($textarea);
-        
-        
-        $submitButton.on('click', function(){
-          
-          var $newTweet = $('<div class=tweet></div>');
-         // var $newUser = $('<p class=user></p>');
-          //var $newMessage = $('<p class=message></p>');
-//          var $newDateTime = $('<span class=dateTime></span>');
-          
-          //$newTweet.appendTo('.newfeed');
-          //$newUser.addClass($('input#username').val()).attr('data-user', $('input#username').val()).text('@' + $('input#username').val() + ' ').appendTo($newTweet);
-          //$newMessage.text($('textarea').val()).appendTo($newTweet);
-//          $newDateTime.attr('data-timestamp', new Date().toUTCString()).appendTo($newTweet);
-          
+      
+        var timeStamp = "Posted: " + new Date();
+        ( ".tweets" ).append(".tweet").appendTo( "timeStamp");
         });
         
           
-      });
+
 
 
     </script>

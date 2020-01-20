@@ -3,42 +3,37 @@ body {
 	font-family: Helvetica;
 	font-size: 18px;
 	text-align: center;
-	background-color: teal;
+	background-color: #42f5da;
+
 }
 
 
 
-
-.tweets {
-	border: 14px double yellow;
-}
 
 .container {
 	width: 90%;
 	line-height: 20px;
 	margin: auto;
+	background-color: grey;
 }
+
+
 .title {
-	color: black;
+	color: orange;
 	font-family: helvetica; 
    font-size: 75px; 
    line-height: 100px; 
    font-weight: normal; 
-
-   text-align: center;
-   text-shadow: 0 1px 1px #fff;
+   text-align: left;
+   background-color: black;
 }
 .user {
 	display: inline;
+	color: #f5bc42;
 	font-family: arial;
 }
 
 
-.highlight {
-  text-decoration: underline;
-  color: yellow;
-  cursor: pointer;
-}
 
 .btn {
 margin-top: 20px;
@@ -46,7 +41,6 @@ padding: 10px 20px 11px;
 font-size: 15px;
 background-color: grey;
 font-weight: bold;
-text-shadow: 1px 1px white;
 color: black;
 border-radius: 100px;
 -moz-border-radius: 100px;
@@ -55,15 +49,6 @@ border: 1px solid white;
 cursor: pointer;
 
 }
-
-.newsfeed {
-	color: grey;
-	font-family: arial;
-	font-size: 16px;
-	line-height: 80px;
-	text-align: center;
-}
-
 
 
 
